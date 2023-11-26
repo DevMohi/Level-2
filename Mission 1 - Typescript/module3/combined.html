@@ -1,0 +1,540 @@
+<!-- Mobile  -->
+<style>
+  .image-swap-section {
+      padding: 2rem;
+      background-color: rgba(var(--grad-one) 0.3);
+      background-image: linear-gradient(0deg,
+              rgba(var(--grad-two) 0.3) 5%,
+              rgba(var(--grad-one) 0.3) 100%);
+      width: 100%;
+  }
+
+  .image-swap-wrapper {
+      grid-column-start: 1;
+      grid-column-end: 16;
+  }
+
+  .image-swap-pinned {
+      display: none;
+  }
+
+  .image-swap-content {
+      grid-column-start: 2;
+      grid-column-end: 14;
+      /*display: flex;*/
+      align-items: center;
+      flex-direction: column;
+      margin-top: 0;
+      margin-right: 0;
+      margin-left: 0;
+      padding-bottom: 2rem;
+  }
+
+  .image-swap-item {
+      height: auto;
+      margin-bottom: 4rem;
+  }
+
+  .image-swap-item:last-of-type {
+      margin-bottom: 0;
+  }
+
+  .image-swap-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 1.25rem;
+      margin-bottom: 1.3rem;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+          rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+          rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  }
+
+  /* Desktop */
+
+  @media (min-width: 768px) {
+      .text {
+          height: 100vh;
+      }
+
+      .image-swap-section {
+          display: grid;
+          grid-gap: 2em;
+          grid-template-columns: minmax(1em, 1fr) repeat(12, minmax(0, 4.5em)) minmax(1em,
+                  1fr);
+          max-width: initial;
+          margin-right: auto;
+          margin-left: auto;
+          padding: 0;
+          background-color: rgba(var(--grad-one) 1);
+          background-image: linear-gradient(0deg,
+                  rgba(var(--grad-two) 1) 5%,
+                  rgba(var(--grad-one) 1) 100%);
+      }
+
+      .image-swap-wrapper {
+          grid-row-start: 1;
+          grid-row-end: 1;
+          grid-column-start: 7;
+          grid-column-end: 14;
+          padding-right: 4.5rem;
+          padding-left: 3rem;
+          position: relative;
+      }
+
+      .grid-reverse .image-swap-content {
+          grid-column-start: 8;
+          grid-column-end: 15;
+          padding-right: 3rem;
+          padding-left: 0;
+          padding-right: 100px;
+      }
+
+      .grid-reverse .image-swap-wrapper {
+          grid-column-start: 1;
+          grid-column-end: 7;
+          padding-right: 0;
+          padding-left: 4.5rem;
+      }
+
+      .image-swap-wrapper img {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          transition: all 1s ease;
+          border-radius: 1.25rem;
+          -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      }
+
+      .image-swap-pinned {
+          position: sticky;
+          position: -webkit-sticky;
+          top: 0;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+
+      .marker-image {
+          opacity: 0;
+          transition: all 0.5s ease;
+          border-radius: 1.25rem;
+          -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      }
+
+      .marker-image.active {
+          opacity: 1;
+      }
+
+      .image-swap-content {
+          grid-row-start: 1;
+          grid-row-end: 1;
+          grid-column-start: 2;
+          grid-column-end: 8;
+          margin-top: 0;
+          margin-left: 0;
+          padding-right: 4rem;
+      }
+
+      .image-swap-item {
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+      }
+
+      .image-swap-item img {
+          display: none;
+      }
+
+      .m-text {
+          font-size: 16px;
+          font-weight: normal;
+          font-family: Aeonik, sans-serif;
+          color: #5c5c5c;
+          line-height: 20px;
+          align-self: start;
+      }
+
+      .b-text {
+          font-size: 32px;
+          font-weight: normal;
+          font-family: Aeonik, sans-serif;
+          color: #000000;
+          line-height: 32px;
+          align-self: start;
+      }
+  }
+
+  /*Mobile*/
+
+  @media (min-width: 0px) and (max-width: 767px) {
+      .text {
+          height: 30vh;
+      }
+
+      .image-swap-section {
+          display: grid;
+          grid-template-columns: minmax(1em, 1fr) repeat(12, minmax(0, 4.5em)) minmax(1em,
+                  1fr);
+          max-width: initial;
+          margin-right: auto;
+          margin-left: auto;
+          padding: 0;
+          padding-left: 24px;
+          background-color: rgba(var(--grad-one) 1);
+          background-image: linear-gradient(0deg,
+                  rgba(var(--grad-two) 1) 5%,
+                  rgba(var(--grad-one) 1) 100%);
+      }
+
+      .image-swap-wrapper {
+          grid-row-start: 1;
+          grid-row-end: 1;
+          grid-column-start: 7;
+          grid-column-end: 14;
+          /*padding-right: 4.5rem; */
+          /*padding-left: 3rem; */
+          position: relative;
+      }
+
+      .grid-reverse .image-swap-content {
+          grid-column-start: 8;
+          grid-column-end: 15;
+          /*padding-right: 3rem;  */
+          padding-left: 0;
+          /*padding-right: 100px; */
+      }
+
+      .grid-reverse .image-swap-wrapper {
+          grid-column-start: 1;
+          grid-column-end: 7;
+          /*padding-right: 0; */
+          /*padding-left: 4.5rem; */
+      }
+
+      .image-swap-wrapper img {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          transition: all 1s ease;
+          border-radius: 1.25rem;
+          -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      }
+
+      .image-swap-pinned {
+          position: sticky;
+          position: -webkit-sticky;
+          top: 0;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding-left: 30px;
+          width: 200%;
+      }
+
+      .marker-image {
+          margin-top: -250px;
+          opacity: 0;
+          transition: all 0.5s ease;
+          border-radius: 1.25rem;
+          -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 14px 60px,
+              rgba(0, 0, 0, 0.05) 0px 5px 10px;
+      }
+
+      .marker-image.active {
+          opacity: 1;
+      }
+
+      .image-swap-content {
+          grid-row-start: 1;
+          grid-row-end: 1;
+          grid-column-start: 2;
+          grid-column-end: 8;
+          margin-top: 0;
+          margin-left: 0;
+          /*padding-right: 4rem; */
+      }
+
+      .image-swap-item {
+          height: 70vh;
+          display: flex;
+          justify-content: center;
+          flex-direction: row;
+          padding-right: 30px;
+          padding-left: 10px;
+      }
+
+      .image-swap-item img {
+          display: none;
+      }
+
+      .m-text {
+          font-size: 14px;
+          font-weight: normal;
+          font-family: Aeonik, sans-serif;
+          color: #5c5c5c;
+          line-height: 18px;
+          align-self: start;
+          /*margin-top: -16px; */
+      }
+
+      .b-text {
+          font-size: 18px;
+          font-weight: normal;
+          font-family: Aeonik, sans-serif;
+          color: #000000;
+          line-height: 22px;
+          align-self: start;
+          margin-top: 20px;
+      }
+
+      #para1 {
+          margin-top: 300px;
+      }
+
+      #para2 {
+          display: none;
+          margin-top: 300px;
+      }
+
+      #para3 {
+          display: none;
+          margin-top: 300px;
+      }
+      #para4{
+          display: none;
+      }
+      #para5{
+          display: none;
+      }
+      #para6{
+          display: none;
+      }
+  }
+</style>
+
+<div class="image-swap-section tmp-blue-green grid-reverse">
+  <div class="image-swap-wrapper">
+      <div class="image-swap-pinned">
+          <img class="marker-image image--1" src="https://assets.codepen.io/7596255/product-graphic-1.svg" />
+          <div id="para1">
+              <p class="b-text">Comprehensive Solution</p>
+              <p class="m-text">
+                  We go beyond just selling AGV/AMR units, we provide
+                  <span class="highlight">end-to-end</span>
+                  solutions.
+                  <br /><br />
+                  For instance, an e-commerce warehouse where we manage the entire
+                  workflow—starting from picking to sorting and lastly seamlessly
+                  transporting the sorted items to the packing station. <br /><br />
+                  Our approach ensures a comprehensive solution for our clients.
+              </p>
+          </div>
+
+
+          <img class="marker-image image--2" src="https://assets.codepen.io/7596255/product-graphic-2.svg" />
+          <div id="para2">
+              <p class="b-text">Comprehensive Solution 2</p>
+              <p class="m-text">
+                  We go beyond just selling AGV/AMR units, we provide
+                  <span class="highlight">end-to-end</span>
+                  solutions.
+                  <br /><br />
+                  For instance, an e-commerce warehouse where we manage the entire
+                  workflow—starting from picking to sorting and lastly seamlessly
+                  transporting the sorted items to the packing station. <br /><br />
+                  Our approach ensures a comprehensive solution for our clients.
+              </p>
+          </div>
+
+
+          <img class="marker-image image--3" src="https://assets.codepen.io/7596255/product-graphic-2.svg" />
+          <div id="para3">
+              <p class="b-text">Comprehensive Solution 3</p>
+              <p class="m-text">
+                  We go beyond just selling AGV/AMR units, we provide
+                  <span class="highlight">end-to-end</span>
+                  solutions.
+                  <br /><br />
+                  For instance, an e-commerce warehouse where we manage the entire
+                  workflow—starting from picking to sorting and lastly seamlessly
+                  transporting the sorted items to the packing station. <br /><br />
+                  Our approach ensures a comprehensive solution for our clients.
+              </p>
+          </div>
+
+      </div>
+  </div>
+
+  <div class="image-swap-content">
+
+      <div class="image-swap-item image-swap-item--1 marker" data-swap="image--1">
+           <img src="https://assets.codepen.io/7596255/product-graphic-1.svg" />
+           <div id="para4">
+               <p class="b-text">Comprehensive Solution</p>
+                <br />
+                <p class="m-text">
+                  We go beyond just selling AGV/AMR units, we provide
+                  <span class="highlight">end-to-end</span> solutions. <br /><br />
+                  For instance, an e-commerce warehouse where we manage the entire
+                  workflow—starting from picking to sorting and lastly seamlessly
+                  transporting the sorted items to the packing station. <br /><br />
+                  Our approach ensures a comprehensive solution for our clients.
+               </p>
+           </div>
+          
+      </div>
+
+      <div class="image-swap-item image-swap-item--2 marker" data-swap="image--2">
+          <img src="https://assets.codepen.io/7596255/product-graphic-2.svg" />
+           <div id="para5">
+               <p class="b-text">Comprehensive Solution</p>
+                <br />
+                <p class="m-text">
+                  We go beyond just selling AGV/AMR units, we provide
+                  <span class="highlight">end-to-end</span> solutions. <br /><br />
+                  For instance, an e-commerce warehouse where we manage the entire
+                  workflow—starting from picking to sorting and lastly seamlessly
+                  transporting the sorted items to the packing station. <br /><br />
+                  Our approach ensures a comprehensive solution for our clients.
+               </p>
+           </div>
+      </div>
+
+      <div class="image-swap-item image-swap-item--3 marker" data-swap="image--3">
+          <img src="https://assets.codepen.io/7596255/product-graphic-2.svg" />
+           <div id="para6">
+               <p class="b-text">Comprehensive Solution</p>
+                <br />
+                <p class="m-text">
+                  We go beyond just selling AGV/AMR units, we provide
+                  <span class="highlight">end-to-end</span> solutions. <br /><br />
+                  For instance, an e-commerce warehouse where we manage the entire
+                  workflow—starting from picking to sorting and lastly seamlessly
+                  transporting the sorted items to the packing station. <br /><br />
+                  Our approach ensures a comprehensive solution for our clients.
+               </p>
+           </div>            
+      </div>
+
+  </div>
+</div>
+
+<script>
+  let options = {
+      threshold: [0.5, 1],
+  };
+  const targets = document.querySelectorAll(".marker");
+
+  function handleIntersection(entries) {
+      entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+              entry.target.current = entry.target.dataset.swap;
+              document
+                  .querySelector(".image-swap-pinned ." + entry.target.current)
+                  ?.classList.add("active");
+
+              const section = document.querySelector(".image-swap-section");
+              const para = document.getElementById("para1");
+              const para2 = document.getElementById("para2");
+              const para3 = document.getElementById("para3");
+              const para4 = document.getElementById("para4");
+              const para5 = document.getElementById("para5");
+              const para6 = document.getElementById("para6");  
+
+
+              // Apply different background colors for desktop only
+              if (window.innerWidth > 0 && window.innerWidth<768) {
+                  if (entry.target.current === "image--1") {
+                      section.style.backgroundColor = "#BFDCDA";
+                      para.style.display = "block";
+                      para2.style.display = "none";
+                      para3.style.display = "none";
+                      para4.style.display = "none";
+                      para5.style.display = "none";
+                      para6.style.display = "none";
+                 
+                  }
+                  if (entry.target.current === "image--2") {
+                      section.style.backgroundColor = "#EEFDFA";
+                      para.style.display = "none";
+                      para2.style.display = "block";
+                      para3.style.display = "none";
+                          para4.style.display = "none";
+                      para5.style.display = "none";
+                      para6.style.display = "none";     
+                  }
+                  if (entry.target.current === "image--3") {
+                      section.style.backgroundColor = "#BFDCDA";
+                      para.style.display = "none";
+                      para2.style.display = "none";
+                      para3.style.display = "block";
+                      para4.style.display = "none";
+                      para5.style.display = "none";
+                      para6.style.display = "none";    
+                  }
+              }
+              else if (window.innerWidth > 768) {
+                  const para = document.getElementById("para1");
+                  const para2 = document.getElementById("para2");
+                  const para3 = document.getElementById("para3");
+                  const para4 = document.getElementById("para4");
+                  const para5 = document.getElementById("para5");
+                  const para6 = document.getElementById("para6");       
+                     
+                if (entry.target.current === "image--1") {
+                  section.style.backgroundColor = "#BFDCDA";
+                  para.style.display = "none";
+                  para2.style.display = "none";
+                  para3.style.display = "none";
+                  
+                  para4.style.display = "block";
+                  para5.style.display = "block";
+                  para6.style.display = "block";    
+                  
+                  
+                } else if (entry.target.current === "image--2") {
+                  section.style.backgroundColor = "#EEFDFA";
+                  para.style.display = "none";
+                  para2.style.display = "none";
+                  para3.style.display = "none";
+                  
+                  para4.style.display = "block";
+                  para5.style.display = "block";
+                  para6.style.display = "block";       
+                  
+                } else if (entry.target.current === "image--3") {
+                  section.style.backgroundColor = "#BFDCDA";
+                  para.style.display = "none";
+                  para2.style.display = "none";
+                  para3.style.display = "none";
+                  para4.style.display = "block";
+                  para5.style.display = "block";
+                  para6.style.display = "block";       
+                }
+              }
+          } else {
+              document
+                  .querySelector(".image-swap-pinned ." + entry.target.current)
+                  ?.classList.remove("active");
+          }
+      });
+  }
+
+  const observer = new IntersectionObserver(handleIntersection, options);
+  targets.forEach((target) => observer.observe(target));
+</script>
